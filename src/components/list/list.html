@@ -1,0 +1,43 @@
+<div #wrapper class="wrap">
+
+  <ion-card *ngFor="let item of bufferUp">
+    <ion-card-header>
+      header {{ item }}
+    </ion-card-header>
+    <ion-card-content>
+      {{ item }}
+      <br>
+      BUFFER UP
+    </ion-card-content>
+  </ion-card>
+
+  <div #sentinelStart class="sentinel" [hidden]="scrollDown || page <= 0"></div>
+
+  <ion-card *ngFor="let item of list; let i=index; last as lastEl" [ready]="!!lastEl" (last)="onLast()" lastFor>
+    <ion-card-header>
+      header {{ item }}
+    </ion-card-header>
+    <ion-card-content>
+      {{ item }}
+      <br>
+      TEST
+      <div *ngIf="i == 2 || i == 4">
+        Different height container Different height container Different height container Different height container Different height container Different height container Different height container
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <div #sentinelFinish class="sentinel" [hidden]="!scrollDown || page >= maxPage - 1"></div>
+
+  <ion-card *ngFor="let item of bufferDown">
+    <ion-card-header>
+      header {{ item }}
+    </ion-card-header>
+    <ion-card-content>
+      {{ item }}
+      <br>
+      BUFFER DOWN
+    </ion-card-content>
+  </ion-card>
+
+</div>
